@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class HelloStateful extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    return _HelloState()
+    return _HelloState();
   }
 }
 
@@ -33,7 +34,11 @@ class _HelloState extends State<HelloStateful>{
     return Row(
       children: <Widget>[
         SizedBox(width: 30,),
-        FloatingActionButton(child: Icon(Icons.exposure_zero_rounded), onPressed: funcion_zero)
+        FloatingActionButton(child: Icon(Icons.exposure_zero_rounded), onPressed: functionZero),
+        FloatingActionButton(child: Icon(Icons.exposure_plus_1), onPressed: functionPlus1),
+        FloatingActionButton(child: Icon(Icons.exposure_minus_1), onPressed: functionMinus1),
+        FloatingActionButton(child: Icon(Icons.shuffle), onPressed: functionRandom),
+        FloatingActionButton(child: Icon(Icons.settings_backup_restore), onPressed: functionReturn1),
       //boton para incrementar de 1 en 1
         // boton para decrementar de 1 en 1
         // boton para incremento aleatorio
@@ -42,9 +47,34 @@ class _HelloState extends State<HelloStateful>{
     );
   }
 
-  void funcion_zero(){
+  void functionZero(){
     setState(() {
       variable_estado = 0;
+    });
+  }
+
+  void functionPlus1(){
+    setState(() {
+      variable_estado += 1;
+    });
+  }
+
+  void functionMinus1(){
+    setState(() {
+      variable_estado -= 1;
+    });
+  }
+
+  void functionRandom(){
+    setState(() {
+      Random rng = new Random();
+      variable_estado = rng.nextInt(variable_estado+100) + variable_estado;
+    });
+  }
+
+  void functionReturn1(){
+    setState(() {
+      variable_estado = -1;
     });
   }
 }
